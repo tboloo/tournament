@@ -1,0 +1,54 @@
+#!/bin/bash
+
+USAGE=$(cat <<-END
+    Generates necessary certiifcates. 
+    Usage: $0 
+        [-g|--cryptogen <full path to cryptogen executable>] 
+        [-c|--config <full path to configurations file>] 
+        [-o|--output <where to store generated certificates>
+END
+)
+
+usage() { echo $USAGE 1>&2; exit 0; }
+
+CRYPTOGEN=$PWD/bin/cryptogen
+CONFIG=$PWD/config/certificates/crypto-config.yaml
+OUTPUT=$PWD/ledger/crypto-config
+
+
+while (( "$#" )); do
+  case "$1" in
+    -g | --cryptogen)
+      CRYPTOGEN=$2
+      shift 2
+      ;;
+    -c | --config)
+      CRYPTOGEN=$2
+      shift 2
+      ;;
+    -o | --output)
+      OUTPUT=$2
+      shift 2
+      ;;
+    -h | --help )
+      usage
+      break;;
+    --) # end argument parsing
+      shift
+      break
+      ;;
+    -*|--*=) # unsupported flags
+      echo "Unsupported option $1"
+      usage
+      exit 1
+      ;;
+    # *) # preserve positional arguments
+    #   PARAM="$PARAMS $1"
+    #   shift
+    #   ;;
+  esac
+done
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
+
+$CRYPTOGEN generate --config=$CONFIG --output=$OUTPUT

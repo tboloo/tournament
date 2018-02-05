@@ -28,7 +28,14 @@ PeerOrgs:
     Domain: zeepeetek.pl
 
     CA:
-      Hostname: peer0
+      Hostname: ca
+      Country: PL
+      Province: mazowieckie
+      Locality: Warszawa
+      OrganizationalUnit: zeepeetek
+      # StreetAddress: address for org # default nil
+      # PostalCode: postalCode for org # default nil
+
       
     Template:
       Count: 2
