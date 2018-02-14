@@ -1,7 +1,14 @@
 #!/bin/bash
 #set -ev
 
-usage() { echo "Pulls all necessary Docker images. Usage: $0 [-v|--version <fabric version>]" 1>&2; exit 0; }
+usage() { 
+  echo "Pulls all necessary Docker images: peer, orderer, couchdb and tools."
+  echo ""
+  echo "Usage: $0 [-v|--version <fabric version>]" 
+  echo ""
+  1>&2; 
+  exit 0; 
+}
 
 
 DOCKER_NS=hyperledger

@@ -1,15 +1,15 @@
 #!/bin/bash
 
-USAGE=$(cat <<-END
-    Generates necessary certiifcates. 
-    Usage: $0 
-        [-g|--cryptogen <full path to cryptogen executable>] 
-        [-c|--config <full path to configurations file>] 
-        [-o|--output <where to store generated certificates>
-END
-)
-
-usage() { echo $USAGE 1>&2; exit 0; }
+usage() { 
+  echo "Generates necessary certiifcates based on provided configuration file"
+  echo ""
+  echo "Usage: $0" 
+  echo "  [-g|--cryptogen <full path to cryptogen executable>] "
+  echo "  [-c|--config <full path to configurations file>] "
+  echo "  [-o|--output <where to store generated certificates> "
+  1>&2; 
+  exit 0; 
+}
 
 CRYPTOGEN=$PWD/bin/cryptogen
 CONFIG=$PWD/config/certificates/crypto-config.yaml
